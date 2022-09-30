@@ -1,7 +1,15 @@
 import React from 'react';
-import './App.css';
+import BottomSheet from './Components/BottomSheet';
+import BtsContent from './Components/BtsContent';
+import Timer from './Components/Timer';
+
 const App = () => {
-  return <div>App</div>;
+  return (
+    <>
+      {/* <Timer /> */}
+      <BottomSheet Content={BtsContent} />
+    </>
+  );
 };
 
 export default App;
