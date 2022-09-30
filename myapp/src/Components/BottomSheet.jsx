@@ -8,12 +8,10 @@ const BottomSheet = ({ Content }) => {
 
   useEffect(() => {
     {
-      show
-        ? setTimeout(setShowSheet(true), 1)
-        : setTimeout(setShowSheet(false), 1);
+      show && setTimeout(setShowSheet(true), 1);
     }
   }, [show]);
-
+  console.log(show);
   return (
     <>
       {/* Show Button */}
@@ -21,7 +19,12 @@ const BottomSheet = ({ Content }) => {
 
       {/* Bottom Sheet */}
       <div
-        onClick={() => setShow(false)}
+        onClick={() => {
+          setShowSheet(false);
+          setTimeout(() => {
+            setShow(false);
+          }, 400);
+        }}
         className={styles.container}
         style={{ display: show ? 'flex' : 'none' }}
       >
