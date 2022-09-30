@@ -18,6 +18,7 @@
   background-color: white;
   transform: translateY(100%); /*by default bottomSheet is hidden */
   transition: transform 0.4s ease-in-out; /*animation for open*/
+  padding: 10px;
 }
 
 /*for visible bottomsheet we need to do onclick "transform:translateY(0)" */
