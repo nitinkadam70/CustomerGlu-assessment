@@ -19,11 +19,12 @@
   transform: translateY(100%); /*by default bottomSheet is hidden */
   transition: transform 0.4s ease-in-out; /*animation for open*/
   padding: 10px;
+  border-radius: 5px 5px 0px 0px;
 }
 
 /*for visible bottomsheet we need to do onclick "transform:translateY(0)" */
 
-button {
+.showBtn {
   margin: 5%;
   font-weight: bold;
   font-size: medium;
@@ -33,6 +34,6 @@ button {
   color: white;
   border: none;
 }
-button:hover {
+.showBtn:hover {
   background-color: rgb(26, 155, 26);
 }

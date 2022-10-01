@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../Styles/btsContent.module.css';
+import styles from '../../Styles/btsContent.module.css';
 const data = [
   { hedd: 'Google Keep', para: 'Add to a note', id: 1 },
   { hedd: 'Google Docs', para: 'Embed in a document', id: 2 },

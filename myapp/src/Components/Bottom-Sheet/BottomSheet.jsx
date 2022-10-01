@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import styles from '../Styles/bottomsheet.module.css';
+import styles from '../../Styles/bottomsheet.module.css';
 const BottomSheet = ({ Content }) => {
   const [show, setShow] = useState(false);
   const [showSheet, setShowSheet] = useState(false);
@@ -11,11 +11,16 @@ const BottomSheet = ({ Content }) => {
       show && setTimeout(setShowSheet(true), 1);
     }
   }, [show]);
-  console.log(show);
+
   return (
     <>
       {/* Show Button */}
-      <button onClick={() => setShow(true)}>Open Bottom Sheet</button>
+      <button
+        className={styles.showBtn}
+        onClick={() => setShow(true)}
+      >
+        Open Bottom Sheet
+      </button>
 
       {/* Bottom Sheet */}
       <div
