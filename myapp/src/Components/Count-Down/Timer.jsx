@@ -4,6 +4,9 @@ import { useState } from 'react';
 import CountDown from './CountDown';
 import TimerLimitInput from './TimerLimitInput';
 import styles from '../../Styles/timer.module.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import { toast } from 'react-toastify';
 
 const Timer = () => {
   const [status, setStatus] = useState('');
@@ -12,10 +15,13 @@ const Timer = () => {
 
   const handleStart = () => {
     if (timeLimit === null) {
-      alert('Please Enter Limit');
+      toast('Please Enter TimeLimit');
     } else {
       if (status === '') {
         setStart(true);
+        setTimeout(() => {
+          setStatus('PLAY');
+        }, 1);
       } else {
         setStart(!start);
         setStatus('');
