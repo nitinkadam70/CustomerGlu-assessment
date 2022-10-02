@@ -25,6 +25,7 @@ const Timer = () => {
       } else {
         setStart(!start);
         setStatus('');
+        setTimeLimit(null);
       }
     }
   };

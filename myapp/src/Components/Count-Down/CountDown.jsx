@@ -1,20 +1,35 @@
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import styles from '../../Styles/countdown.module.css';
 
 //Reusable Count-Down component
 const CountDown = (props) => {
   const { status, timeLimit } = props;
+
   const timerId = useRef(null);
-  const [seconds, setSeconds] = useState(timeLimit.seconds);
-  const [minutes, setMinutes] = useState(timeLimit.minutes);
-  const [hour, setHour] = useState(timeLimit.hour);
+  const [seconds, setSeconds] = useState(timeLimit.seconds || 0);
+  const [minutes, setMinutes] = useState(timeLimit.minutes || 0);
+  const [hour, setHour] = useState(timeLimit.hour || 0);
 
   const start = () => {
     if (!timerId.current) {
       timerId.current = setInterval(() => {
         setSeconds((seconds) => seconds - 1);
       }, 1000);
+    }
+    if (hour == 0 && minutes == 0 && seconds == 0) {
+      clearInterval(timerId.current);
+      toast('⏰ Time is Expired');
+    }
+    if (seconds == 0 && minutes > 0) {
+      setMinutes((minutes) => minutes - 1);
+      setSeconds(59);
+    }
+    if (seconds == 0 && minutes == 0 && hour > 0) {
+      setHour((hour) => hour - 1);
+      setMinutes(59);
+      setSeconds(59);
     }
   };
   const pause = () => {
@@ -30,19 +45,6 @@ const CountDown = (props) => {
   };
 
   useEffect(() => {
-    if (seconds === 0) {
-      if (minutes > 0) {
-        setMinutes(minutes - 1);
-        setSeconds(59);
-      } else {
-        clearInterval(timerId.current);
-      }
-    }
-    if (minutes === 1 && seconds === 1) {
-      setMinutes(59);
-      setSeconds(59);
-      setHour(hour - 1);
-    }
     if (status == 'PLAY') {
       start();
     }
@@ -57,6 +59,7 @@ const CountDown = (props) => {
   //2 - setSeconds(0);
   //3 - setMinutes(0);
   //4 -  setHour(0);
+
   useEffect(() => {
     return () => {
       clearInterval(timerId.current);
