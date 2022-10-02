@@ -30,9 +30,13 @@ const CountDown = (props) => {
   };
 
   useEffect(() => {
-    if (seconds === 1) {
-      setMinutes(minutes - 1);
-      setSeconds(59);
+    if (seconds === 0) {
+      if (minutes > 0) {
+        setMinutes(minutes - 1);
+        setSeconds(59);
+      } else {
+        clearInterval(timerId.current);
+      }
     }
     if (minutes === 1 && seconds === 1) {
       setMinutes(59);
