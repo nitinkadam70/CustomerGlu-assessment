@@ -1,19 +1,19 @@
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
-import styles from '../../Styles/timer.module.css';
-import TimerLimitInput from './TimerLimitInput';
+import styles from '../../Styles/countdown.module.css';
 
 //Reusable Count-Down component
-const CountDown = () => {
+const CountDown = (props) => {
+  const { status, timeLimit } = props;
   const timerId = useRef(null);
-  const [seconds, setSeconds] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [hour, setHour] = useState(0);
-  // console.log(seconds, minutes);
+  const [seconds, setSeconds] = useState(timeLimit.seconds);
+  const [minutes, setMinutes] = useState(timeLimit.minutes);
+  const [hour, setHour] = useState(timeLimit.hour);
+
   const start = () => {
     if (!timerId.current) {
       timerId.current = setInterval(() => {
-        setSeconds((seconds) => seconds + 1);
+        setSeconds((seconds) => seconds - 1);
       }, 1000);
     }
   };
@@ -30,16 +30,22 @@ const CountDown = () => {
   };
 
   useEffect(() => {
-    if (seconds === 59) {
-      setMinutes(minutes + 1);
-      setSeconds(0);
+    if (seconds === 1) {
+      setMinutes(minutes - 1);
+      setSeconds(59);
     }
-    if (minutes === 59 && seconds === 59) {
-      setHour(1);
-      setMinutes(0);
-      setSeconds(0);
+    if (minutes === 1 && seconds === 1) {
+      setMinutes(59);
+      setSeconds(59);
+      setHour(hour - 1);
     }
-  }, [seconds, minutes, hour]);
+    if (status == 'PLAY') {
+      start();
+    }
+    if (status == 'PAUSE') {
+      pause();
+    }
+  }, [seconds, minutes, hour, status]);
 
   //Clean Up Function
   //becouse whenever our component is unmounted then it reset this four value
@@ -54,13 +60,18 @@ const CountDown = () => {
   }, []);
   return (
     <div className={styles.countDown}>
-      <TimerLimitInput />
-      <h1>
-        {hour}:{minutes}:{seconds}
-      </h1>
-      <button onClick={start}>Start</button>
-      <button onClick={pause}>Pause</button>
-      <button onClick={reset}>Reset</button>
+      <div>
+        <h4>{hour ? hour : '00'}</h4>
+        <p>h</p>
+      </div>
+      <div>
+        <h4>{minutes ? minutes : '00'}</h4>
+        <p>m</p>
+      </div>
+      <div>
+        <h4>{seconds ? seconds : '00'}</h4>
+        <p>s</p>
+      </div>
     </div>
   );
 };

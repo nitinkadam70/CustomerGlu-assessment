@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styles from '../../Styles/timerLimitInputs.module.css';
-const TimerLimitInput = () => {
-  const [timerLimit, setTimerLimit] = useState({});
+const TimerLimitInput = (props) => {
+  const { timeLimit, setTimeLimit } = props;
 
   const handleChange = (e) => {
-    setTimerLimit({
-      ...timerLimit,
+    setTimeLimit({
+      ...timeLimit,
       [e.target.name]: e.target.value,
     });
   };

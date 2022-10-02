@@ -25,7 +25,7 @@
 /*for visible bottomsheet we need to do onclick "transform:translateY(0)" */
 
 .showBtn {
-  margin: 5%;
+  margin-top: 5%;
   font-weight: bold;
   font-size: medium;
   padding: 12px;

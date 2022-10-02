@@ -1,12 +1,12 @@
 import React from 'react';
-import CountDown from './Components/Count-Down/CountDown';
 import BottomSheet from './Components/Bottom-Sheet/BottomSheet';
 import BtsContent from './Components/Bottom-Sheet/BtsContent';
+import Timer from './Components/Count-Down/Timer';
 
 const App = () => {
   return (
     <>
-      <CountDown />
+      <Timer />
       <BottomSheet Content={BtsContent} />
     </>
   );

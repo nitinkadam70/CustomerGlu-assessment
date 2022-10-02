@@ -1,5 +1,6 @@
 .inputsContainer {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 10px;
 }
@@ -10,7 +11,7 @@
 .inputsContainer > div > input {
   width: 20px;
   height: 40px;
-  font-size: large;
+  font-size: larger;
   font-weight: 400;
   border: none;
   outline: none;
